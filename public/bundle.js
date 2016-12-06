@@ -19781,33 +19781,49 @@
 
 	    getInitialState: function getInitialState() {
 	        return {
-	            location: "Miami",
-	            temp: 88
+	            isLoading: false
 	        };
 	    },
 	    handleSearch: function handleSearch(location) {
 	        //create a variable that will allow us to call this after we make a new function bc it gets lost
 	        var that = this;
+
+	        //set state to  loading for the animation
+	        that.setState({
+	            isLoading: true
+	        });
+
 	        openWeatherMap.getTemp(location).then(function (temp) {
 	            //used that bc when in a new function, it gets lost, so used var for this from before. 
 	            that.setState({
 	                location: location,
-	                temp: temp
+	                temp: temp,
+	                isLoading: false
 	            });
-	        }, function (erroMessage) {
-	            alert(erroMessage);
+	        }, function (errorMessage) {
+	            that.setState({ isLoading: false });
+	            alert(errorMessage);
 	        });
-
-	        //   this.setState({
-	        //       location: location,
-	        //       temp: 23
-	        //   }); 
 	    },
 	    render: function render() {
 	        var _state = this.state,
+	            isLoading = _state.isLoading,
 	            temp = _state.temp,
 	            location = _state.location;
 
+	        //made its own function, can be added as a function in the return statement
+
+	        function renderMessage() {
+	            if (isLoading) {
+	                return React.createElement(
+	                    "h3",
+	                    null,
+	                    "Loading Weather..."
+	                );
+	            } else if (temp && location) {
+	                return React.createElement(WeatherMessage, { location: location, temp: temp });
+	            }
+	        }
 	        return React.createElement(
 	            "div",
 	            null,
@@ -19817,7 +19833,7 @@
 	                "Weather Component"
 	            ),
 	            React.createElement(WeatherForm, { onSearch: this.handleSearch }),
-	            React.createElement(WeatherMessage, { location: location, temp: temp })
+	            renderMessage()
 	        );
 	    }
 	});

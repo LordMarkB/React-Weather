@@ -20,6 +20,4 @@ app.use(express.static(__dirname + "/public"));
 app.listen(Port, process.env.IP, function(){
    console.log("Bring me to your leader ");
 });
-
-
 console.log('using the updated server');

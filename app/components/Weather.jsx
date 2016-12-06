@@ -6,38 +6,47 @@ var WeatherForm    = require("WeatherForm"),
 var Weather = React.createClass({
     getInitialState: function(){
       return{
-          location: "Miami",
-          temp: 88
+          isLoading:false
       };  
     },
     handleSearch: function(location){
         //create a variable that will allow us to call this after we make a new function bc it gets lost
         var that = this;
+        
+        //set state to  loading for the animation
+        that.setState({
+            isLoading : true,
+        });
+        
         openWeatherMap.getTemp(location).then(function (temp){
             //used that bc when in a new function, it gets lost, so used var for this from before. 
             that.setState({
                 location:location,
-                temp:temp
+                temp:temp,
+                isLoading:false
             });
-        }, function (erroMessage){
-            alert(erroMessage);
+        }, function (errorMessage){
+            that.setState({isLoading:false});
+            alert(errorMessage);
         })
-        
-        
-        
-    //   this.setState({
-    //       location: location,
-    //       temp: 23
-    //   }); 
     },
     render: function (){
-        var {temp,location} = this.state;
+        var {isLoading,temp,location} = this.state;
+        
+        //made its own function, can be added as a function in the return statement
+        function renderMessage (){
+            if(isLoading){
+                return <h3>Loading Weather...</h3>;
+            }else if (temp && location){
+                return <WeatherMessage location={location} temp = {temp} />
+            }
+        }
         return (
                 
                 <div>
                     <h3>Weather Component</h3>
                     <WeatherForm onSearch = {this.handleSearch}/>
-                    <WeatherMessage location={location} temp = {temp} />
+                    {renderMessage()}
                 </div>
             )
     }
