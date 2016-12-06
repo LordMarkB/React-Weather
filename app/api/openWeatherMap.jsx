@@ -35,8 +35,6 @@ module.exports = {
             //failure path
             //open weathermap api is not super RESTFUL so we need to do that anyway. 
             console.log("failure path");
-            console.log("res.data.cod ")
-            //console.log(res.data.message);
             throw new Error(res.data);
         });
 
