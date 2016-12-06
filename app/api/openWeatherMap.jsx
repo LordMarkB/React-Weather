@@ -25,8 +25,6 @@ module.exports = {
             //sucsess path
             //if statement will catch all other issues in the response if any 
             if(res.data.cod && res.data.message){
-                console.log("res.data.cod "+ res.data.cod);
-                console.log(res.data.message);
                 console.log("Success Path Error");
                 
                throw new Error(res.data.message); 
@@ -37,8 +35,9 @@ module.exports = {
             //failure path
             //open weathermap api is not super RESTFUL so we need to do that anyway. 
             console.log("failure path");
-            console.log(res);
-            throw new Error(res.data.message);
+            console.log("res.data.cod ")
+            //console.log(res.data.message);
+            throw new Error(res.data);
         });
 
     }
