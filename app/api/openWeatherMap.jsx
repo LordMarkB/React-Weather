@@ -21,9 +21,12 @@ module.exports = {
         //need to return it as well
         
         return axios.get(requestURL).then(function(res){
+
             //sucsess path
             //if statement will catch all other issues in the response if any 
             if(res.data.cod && res.data.message){
+                console.log("res.data.cod "+ res.data.cod);
+                console.log(res.data.message);
                 console.log("Success Path Error");
                 
                throw new Error(res.data.message); 
