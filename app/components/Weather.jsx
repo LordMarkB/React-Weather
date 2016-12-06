@@ -13,6 +13,10 @@ var Weather = React.createClass({
         //create a variable that will allow us to call this after we make a new function bc it gets lost
         var that = this;
         
+        
+        //this keyword will automatically pause the state in this moment in time when developer tools open;
+        //debugger;
+        
         //set state to  loading for the animation
         that.setState({
             isLoading : true,

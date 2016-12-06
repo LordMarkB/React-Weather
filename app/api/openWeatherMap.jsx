@@ -21,6 +21,7 @@ module.exports = {
         //need to return it as well
         
         return axios.get(requestURL).then(function(res){
+            //debugger;
 
             //sucsess path
             //if statement will catch all other issues in the response if any 

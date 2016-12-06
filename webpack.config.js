@@ -31,5 +31,6 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/
             }
             ]
-    }
+    },
+        devtool: '#eval-source-map' //let us create source maps
 };
