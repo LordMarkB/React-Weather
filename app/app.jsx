@@ -3,9 +3,17 @@ var React          = require("react"),
     Weather        = require("Weather"),
     Main           = require("Main"),
     About          = require("About"),
-    Examples       = require("Examples");
+    Examples       = require("Examples"),
+    {Route, Router, IndexRoute, hashHistory} = require("react-router");
 
-var {Route, Router, IndexRoute, hashHistory} = require("react-router");
+//load foundation 
+//jsx doesnt know how to use css so add loader css!
+//need to put into all pages, so chain the loaders with style!
+require("style!css!foundation-sites/dist/foundation.min.css");
+
+//grabs whole document and applies foundation
+$(document).foundation();
+
 
 
 ReactDOM.render(
