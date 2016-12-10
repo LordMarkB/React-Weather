@@ -9,7 +9,7 @@ var WeatherMessage = ({temp,location})=>{
     // 3RD WAY IS TO DESTRUCTURE PROPS RIGHT IN THE ARGUMENT (SEEN ABOVE)
     return (
             <div>
-                <h3>It is {temp} in {location}</h3>
+                <h3 className="text-center">It is {temp} in {location}</h3>
             </div>
     );   
 };
